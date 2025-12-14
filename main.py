@@ -578,13 +578,48 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 # Mount the current directory to serve HTML/CSS/JS
-app.mount("/static", StaticFiles(directory="."), name="static")
+if os.path.exists("images"):
+    app.mount("/images", StaticFiles(directory="images"), name="images")
 
+# 2. Serve CSS files explicitly
+@app.get("/style.css")
+async def get_style():
+    return FileResponse("style.css")
+
+@app.get("/dashboard.css")
+async def get_dash_css():
+    return FileResponse("dashboard.css")
+
+# 3. Serve JavaScript files explicitly
+@app.get("/admin-dashboard.js")
+async def get_admin_js():
+    return FileResponse("admin-dashboard.js")
+
+@app.get("/student-dashboard.js")
+async def get_student_js():
+    return FileResponse("student-dashboard.js")
+
+@app.get("/login.js")
+async def get_login_js():
+    return FileResponse("login.js")
+
+@app.get("/register.js")
+async def get_reg_js():
+    return FileResponse("register.js")
+
+@app.get("/main.js")
+async def get_main_js():
+    return FileResponse("main.js")
+
+# 4. Serve the HTML Pages
 @app.get("/")
 async def read_index():
     return FileResponse('index.html')
 
-# Add routes for your other HTML pages so they open cleanly
+@app.get("/register")
+async def read_register():
+    return FileResponse('register.html')
+
 @app.get("/student-dashboard")
 async def read_student():
     return FileResponse('student-dashboard.html')
@@ -592,7 +627,6 @@ async def read_student():
 @app.get("/admin-dashboard")
 async def read_admin():
     return FileResponse('admin-dashboard.html')
-
 
 
 if __name__ == "__main__":
