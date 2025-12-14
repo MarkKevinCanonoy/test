@@ -7,4 +7,4 @@ python-dotenv
 google-generativeai
 python-multipart
 requests
-pydantic
+pydantic[email]
