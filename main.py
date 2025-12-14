@@ -32,11 +32,11 @@ else:
 
 # 4. database config
 DB_CONFIG = {
-    'host': os.getenv("DB_HOST", "localhost"),
-    'user': os.getenv("DB_USER", "root"),
-    'password': os.getenv("DB_PASSWORD", "kurt_cobain"),
+    'host': os.getenv("DB_HOST"),
+    'user': os.getenv("DB_USER"),
+    'password': os.getenv("DB_PASSWORD"),
     'port': int(os.getenv("DB_PORT", 3306)),
-    'database': os.getenv("DB_NAME", "school_clinic")
+    'database': os.getenv("DB_NAME", "defaultdb")
 }
 
 # --- OPTIMIZATION: SMARTER AI INSTRUCTIONS ---
